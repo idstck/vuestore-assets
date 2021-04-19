@@ -125,3 +125,16 @@ db.products.find({
     ]
   }
 })
+
+// Join query for looking items in cart collection with products
+db.cart.aggregate([
+    {
+      $lookup:
+        {
+          from: "products",
+          localField: "cart_items",
+          foreignField: "code",
+          as: "products"
+        }
+   }
+ ])
