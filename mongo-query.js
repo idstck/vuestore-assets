@@ -88,27 +88,8 @@ db.products.insertMany([
   }
 ]);
 
-db.cart.insertOne({
+db.orders.insertOne({
   "user_id": 1,
-  "cart_items": [
-    "6079507657979d5b4546e29c",
-    "6079507657979d5b4546e29d",
-    "6079507657979d5b4546e29e"
-  ]
-})
-
-db.products.find({
-  _id: {
-    $in: [
-      ObjectId("6079507657979d5b4546e29c"),
-      ObjectId("6079507657979d5b4546e29d"),
-      ObjectId("6079507657979d5b4546e29e")
-    ]
-  }
-})
-
-db.cart.insertOne({
-  "user_id": 2,
   "cart_items": [
     "123",
     "234",
@@ -116,18 +97,8 @@ db.cart.insertOne({
   ]
 })
 
-db.products.find({
-  code: {
-    $in: [
-      "123",
-      "234",
-      "345"
-    ]
-  }
-})
-
 // Join query for looking items in cart collection with products
-db.cart.aggregate([
+db.orders.aggregate([
     {
       $lookup:
         {
